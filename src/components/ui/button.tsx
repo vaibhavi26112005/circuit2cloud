@@ -14,13 +14,17 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-secondary hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        cta: "bg-cta text-accent-foreground font-display font-bold uppercase tracking-wider glow-accent hover:brightness-110",
+        neon: "border border-primary/60 bg-primary/5 text-primary font-display uppercase tracking-wider hover:bg-primary/15 hover:glow",
+        success: "bg-success text-primary-foreground hover:bg-success/90",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
+        xl: "h-12 rounded-md px-7 text-base",
         icon: "h-9 w-9",
       },
     },
