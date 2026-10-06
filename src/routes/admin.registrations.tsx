@@ -42,7 +42,7 @@ function Regs() {
     setBusy(id + status);
     const { error } = await supabase.from("registrations").update({ status }).eq("id", id);
     setBusy(null);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (error) { toast.error("Something went wrong. Please try again."); return; }
     toast.success(`Registration ${status.toLowerCase()}`);
     qc.invalidateQueries({ queryKey: ["admin"] });
     setView((v) => (v && v.id === id ? { ...v, status } : v));

@@ -246,7 +246,7 @@ export function AwardsSection() {
       {isLoading ? <Skeleton className="h-48" /> : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {data?.map((a, i) => {
-            const Icon = AWARD_ICONS[i % 4];
+            const Icon = AWARD_ICONS[i % 4] ?? Trophy;
             return (
               <article key={a.id} className="glass rounded-xl p-6 transition-all hover:-translate-y-1 hover:glow-accent">
                 <Icon className="size-10 text-warning" />

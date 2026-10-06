@@ -34,13 +34,13 @@ export function ListEditor({ table, rows, loading, cols, queryKey, blank, groupB
   const save = (r: Row) => {
     const d = drafts[r.id];
     if (!d) return;
-    for (const c of cols) if (c.k === "title" && !String(val(r, "title")).trim()) return toast.error("Title is required.");
+    for (const c of cols) if (c.k === "title" && !String(val(r, "title")).trim()) { toast.error("Title is required."); return; }
     run(r.id + "save", () => supabase.from(table).update(d as never).eq("id", r.id), "Saved").then((ok) => ok && setDrafts((x) => { const n = { ...x }; delete n[r.id]; return n; }));
   };
 
   const move = async (list: Row[], i: number, dir: -1 | 1) => {
     const a = list[i], b = list[i + dir];
-    if (!b) return;
+    if (!a || !b) return;
     setBusy("move");
     await supabase.from(table).update({ sort_order: b.sort_order } as never).eq("id", a.id);
     await supabase.from(table).update({ sort_order: a.sort_order === b.sort_order ? a.sort_order + dir : a.sort_order } as never).eq("id", b.id);

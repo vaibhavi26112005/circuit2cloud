@@ -37,16 +37,16 @@ function SettingsPage() {
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (f.contact_email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.contact_email)) return toast.error("Enter a valid email address.");
+    if (f.contact_email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.contact_email)) { toast.error("Enter a valid email address."); return; }
     setBusy(true);
     const row: Record<string, string | null> = {};
     FIELDS.forEach(({ k }) => { const v = (f[k] as string | null | undefined)?.toString().trim(); row[k] = v ? v.slice(0, 2000) : null; });
-    row.event_name ||= "CIRCUIT2CLOUD";
-    row.tagline ||= "Diagnose. Design. Build. Prove.";
-    row.description ||= "";
+    row["event_name"] ||= "CIRCUIT2CLOUD";
+    row["tagline"] ||= "Diagnose. Design. Build. Prove.";
+    row["description"] ||= "";
     const { error } = await supabase.from("event_settings").update({ ...row, registration_status: f.registration_status } as never).eq("id", 1);
     setBusy(false);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (error) { toast.error("Something went wrong. Please try again."); return; }
     toast.success("Settings saved — live on the public site");
     qc.invalidateQueries({ queryKey: ["settings"] });
   };
