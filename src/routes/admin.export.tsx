@@ -24,8 +24,8 @@ function Page() {
     setBusy(true);
     const { data, error } = await supabase.from("registrations").select("*").order("created_at");
     setBusy(false);
-    if (error) return toast.error("Something went wrong. Please try again.");
-    if (!data.length) return toast.info("No registrations found.");
+    if (error) { toast.error("Something went wrong. Please try again."); return; }
+    if (!data.length) { toast.info("No registrations found."); return; }
     const csv = [COLS.join(","), ...data.map((r) => COLS.map((c) => esc((r as Record<string, unknown>)[c])).join(","))].join("\n");
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
     const a = document.createElement("a");

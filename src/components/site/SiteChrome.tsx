@@ -61,7 +61,7 @@ export function Navbar() {
             <li key={n.label}>
               <Link
                 to={n.to}
-                hash={"hash" in n ? n.hash : undefined}
+                {...("hash" in n && n.hash ? { hash: n.hash } : {})}
                 className="rounded px-3 py-2 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
                 activeOptions={{ exact: true, includeHash: true }}
                 activeProps={{ className: "text-primary" }}
@@ -93,7 +93,7 @@ export function Navbar() {
             <li key={n.label}>
               <Link
                 to={n.to}
-                hash={"hash" in n ? n.hash : undefined}
+                {...("hash" in n && n.hash ? { hash: n.hash } : {})}
                 onClick={() => setOpen(false)}
                 className="block py-3 font-mono text-sm uppercase tracking-widest text-muted-foreground hover:text-primary"
               >
@@ -125,7 +125,7 @@ export function Footer() {
         <ul className="grid grid-cols-2 gap-2 text-sm">
           {NAV.map((n) => (
             <li key={n.label}>
-              <Link to={n.to} hash={"hash" in n ? n.hash : undefined} className="text-muted-foreground hover:text-primary">
+              <Link to={n.to} {...("hash" in n && n.hash ? { hash: n.hash } : {})} className="text-muted-foreground hover:text-primary">
                 {n.label}
               </Link>
             </li>

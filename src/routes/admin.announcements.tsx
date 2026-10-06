@@ -36,12 +36,12 @@ function Ann() {
 
   const save = async (status: "DRAFT" | "PUBLISHED") => {
     if (!edit) return;
-    if (!edit.title.trim() || !edit.message.trim()) return setErr("Title and message are required.");
+    if (!edit.title.trim() || !edit.message.trim()) { setErr("Title and message are required."); return; }
     setBusy(status);
     const row = { title: edit.title.trim().slice(0, 200), message: edit.message.trim().slice(0, 4000), type: edit.type, is_pinned: edit.is_pinned, status };
     const { error } = edit.id ? await supabase.from("announcements").update(row).eq("id", edit.id) : await supabase.from("announcements").insert(row);
     setBusy(null);
-    if (error) return setErr("Something went wrong. Please try again.");
+    if (error) { setErr("Something went wrong. Please try again."); return; }
     toast.success(status === "PUBLISHED" ? "Published" : "Draft saved");
     setEdit(null);
     refresh();
@@ -51,7 +51,7 @@ function Ann() {
     setBusy(a.id + label);
     const { error } = await supabase.from("announcements").update(p).eq("id", a.id);
     setBusy(null);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (error) { toast.error("Something went wrong. Please try again."); return; }
     refresh();
   };
   const del = async (a: Announcement) => {
@@ -59,7 +59,7 @@ function Ann() {
     setBusy(a.id + "del");
     const { error } = await supabase.from("announcements").delete().eq("id", a.id);
     setBusy(null);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (error) { toast.error("Something went wrong. Please try again."); return; }
     toast.success("Deleted");
     refresh();
   };

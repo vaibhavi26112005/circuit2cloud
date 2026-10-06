@@ -18,7 +18,7 @@ export const Route = createFileRoute("/register")({
   component: RegisterPage,
 });
 
-type Form = Record<string, string>;
+type Form = { team_size: string; [k: string]: string | undefined };
 const PERSON = [
   { k: "name", l: "Full Name", t: "text", ac: "name" },
   { k: "email", l: "Email", t: "email", ac: "email" },
@@ -55,7 +55,7 @@ function validate(step: number, f: Form): Record<string, string> {
     };
   } else if (step === 1) shape = personSchema("leader", "Leader");
   else if (step === 2) {
-    const n = Number(f.team_size);
+    const n = Number(f["team_size"]);
     for (let i = 2; i <= n; i++) shape = { ...shape, ...personSchema(`member${i}`, `Member ${i}`) };
   }
   const r = z.object(shape).safeParse(f);
@@ -65,7 +65,7 @@ function validate(step: number, f: Form): Record<string, string> {
   return e;
 }
 
-function Field({ id, label, value, onChange, error, type = "text", ac }: { id: string; label: string; value: string; onChange: (v: string) => void; error?: string; type?: string; ac?: string }) {
+function Field({ id, label, value, onChange, error, type = "text", ac }: { id: string; label: string; value?: string; onChange: (v: string) => void; error?: string; type?: string; ac?: string }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label} <span className="text-accent" aria-hidden>*</span></Label>
@@ -112,7 +112,7 @@ function RegisterPage() {
     const e = validate(step, f);
     setErrors(e);
     if (Object.keys(e).length) {
-      document.getElementById(Object.keys(e)[0])?.focus();
+      document.getElementById(Object.keys(e)[0] ?? "")?.focus();
       return;
     }
     setStep(step + 1);
@@ -127,8 +127,8 @@ function RegisterPage() {
     setSubmitting(true);
     setSubmitErr(null);
     const payload: Form = { ...f };
-    if (f.team_size === "3") PERSON.forEach((p) => delete payload[`member4_${p.k}`]);
-    const { data, error } = await supabase.rpc("submit_registration", { p: payload });
+    if (f["team_size"] === "3") PERSON.forEach((p) => delete payload[`member4_${p.k}`]);
+    const { data, error } = await supabase.rpc("submit_registration", { p: payload as never });
     setSubmitting(false);
     if (error) {
       setSubmitErr(error.message || "Registration could not be completed. Please try again.");
@@ -176,7 +176,7 @@ function RegisterPage() {
   }
 
   const closed = s?.registration_status === "CLOSED";
-  const size = Number(f.team_size);
+  const size = Number(f["team_size"]);
 
   return (
     <PublicLayout>
@@ -206,15 +206,15 @@ function RegisterPage() {
               {step === 0 && (
                 <fieldset className="space-y-4">
                   <legend className="mb-4 font-display text-xl font-bold">Team</legend>
-                  <Field id="team_name" label="Team Name" value={f.team_name} onChange={(v) => set("team_name", v)} error={errors.team_name} />
-                  <Field id="college" label="College / Institution" value={f.college} onChange={(v) => set("college", v)} error={errors.college} />
-                  <Field id="department" label="Department" value={f.department} onChange={(v) => set("department", v)} error={errors.department} />
+                  <Field id="team_name" label="Team Name" value={f["team_name"]} onChange={(v) => set("team_name", v)} error={errors.team_name} />
+                  <Field id="college" label="College / Institution" value={f["college"]} onChange={(v) => set("college", v)} error={errors.college} />
+                  <Field id="department" label="Department" value={f["department"]} onChange={(v) => set("department", v)} error={errors.department} />
                   <div>
                     <p className="mb-2 text-sm font-medium">Team Size <span className="text-accent">*</span></p>
                     <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Team size">
                       {["3", "4"].map((n) => (
-                        <button key={n} type="button" role="radio" aria-checked={f.team_size === n} onClick={() => set("team_size", n)}
-                          className={cn("h-14 rounded-lg border font-display text-lg font-bold transition-all", f.team_size === n ? "border-primary bg-primary/15 text-primary glow" : "bg-secondary/40 hover:border-primary/50")}>
+                        <button key={n} type="button" role="radio" aria-checked={f["team_size"] === n} onClick={() => set("team_size", n)}
+                          className={cn("h-14 rounded-lg border font-display text-lg font-bold transition-all", f["team_size"] === n ? "border-primary bg-primary/15 text-primary glow" : "bg-secondary/40 hover:border-primary/50")}>
                           {n} Members
                         </button>
                       ))}
@@ -242,7 +242,7 @@ function RegisterPage() {
               {step === 3 && (
                 <div className="space-y-6">
                   <h2 className="font-display text-xl font-bold">Review</h2>
-                  <ReviewBlock title="Team" onEdit={() => setStep(0)} rows={[["Team Name", f.team_name], ["College", f.college], ["Department", f.department], ["Team Size", f.team_size]]} />
+                  <ReviewBlock title="Team" onEdit={() => setStep(0)} rows={[["Team Name", f["team_name"]], ["College", f["college"]], ["Department", f["department"]], ["Team Size", f["team_size"]]]} />
                   <ReviewBlock title="Team Leader" onEdit={() => setStep(1)} rows={PERSON.map((p) => [p.l, f[`leader_${p.k}`]])} />
                   {Array.from({ length: size - 1 }, (_, i) => i + 2).map((n) => (
                     <ReviewBlock key={n} title={`Member ${n}`} onEdit={() => setStep(2)} rows={PERSON.map((p) => [p.l, f[`member${n}_${p.k}`]])} />
