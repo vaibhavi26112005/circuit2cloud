@@ -10,33 +10,234 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AnnouncementsRouteImport } from './routes/announcements'
+import { Route as JudgingRouteImport } from './routes/judging'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as RulesRouteImport } from './routes/rules'
+import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAccountRouteImport } from './routes/admin.account'
+import { Route as AdminAnnouncementsRouteImport } from './routes/admin.announcements'
+import { Route as AdminAwardsRouteImport } from './routes/admin.awards'
+import { Route as AdminExportRouteImport } from './routes/admin.export'
+import { Route as AdminJudgingRouteImport } from './routes/admin.judging'
+import { Route as AdminRegistrationsRouteImport } from './routes/admin.registrations'
+import { Route as AdminScheduleRouteImport } from './routes/admin.schedule'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnnouncementsRoute = AnnouncementsRouteImport.update({
+  id: '/announcements',
+  path: '/announcements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JudgingRoute = JudgingRouteImport.update({
+  id: '/judging',
+  path: '/judging',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RulesRoute = RulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAccountRoute = AdminAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnnouncementsRoute = AdminAnnouncementsRouteImport.update({
+  id: '/announcements',
+  path: '/announcements',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAwardsRoute = AdminAwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminExportRoute = AdminExportRouteImport.update({
+  id: '/export',
+  path: '/export',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminJudgingRoute = AdminJudgingRouteImport.update({
+  id: '/judging',
+  path: '/judging',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRegistrationsRoute = AdminRegistrationsRouteImport.update({
+  id: '/registrations',
+  path: '/registrations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScheduleRoute = AdminScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin_/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/announcements': typeof AnnouncementsRoute
+  '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
+  '/rules': typeof RulesRoute
+  '/schedule': typeof ScheduleRoute
+  '/admin/account': typeof AdminAccountRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/awards': typeof AdminAwardsRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/judging': typeof AdminJudgingRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/announcements': typeof AnnouncementsRoute
+  '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
+  '/rules': typeof RulesRoute
+  '/schedule': typeof ScheduleRoute
+  '/admin/account': typeof AdminAccountRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/awards': typeof AdminAwardsRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/judging': typeof AdminJudgingRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/announcements': typeof AnnouncementsRoute
+  '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
+  '/rules': typeof RulesRoute
+  '/schedule': typeof ScheduleRoute
+  '/admin/account': typeof AdminAccountRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/awards': typeof AdminAwardsRoute
+  '/admin/export': typeof AdminExportRoute
+  '/admin/judging': typeof AdminJudgingRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin_/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/announcements'
+    | '/judging'
+    | '/register'
+    | '/rules'
+    | '/schedule'
+    | '/admin/account'
+    | '/admin/announcements'
+    | '/admin/awards'
+    | '/admin/export'
+    | '/admin/judging'
+    | '/admin/registrations'
+    | '/admin/schedule'
+    | '/admin/settings'
+    | '/admin/login'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/announcements'
+    | '/judging'
+    | '/register'
+    | '/rules'
+    | '/schedule'
+    | '/admin/account'
+    | '/admin/announcements'
+    | '/admin/awards'
+    | '/admin/export'
+    | '/admin/judging'
+    | '/admin/registrations'
+    | '/admin/schedule'
+    | '/admin/settings'
+    | '/admin/login'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/announcements'
+    | '/judging'
+    | '/register'
+    | '/rules'
+    | '/schedule'
+    | '/admin/account'
+    | '/admin/announcements'
+    | '/admin/awards'
+    | '/admin/export'
+    | '/admin/judging'
+    | '/admin/registrations'
+    | '/admin/schedule'
+    | '/admin/settings'
+    | '/admin_/login'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AnnouncementsRoute: typeof AnnouncementsRoute
+  JudgingRoute: typeof JudgingRoute
+  RegisterRoute: typeof RegisterRoute
+  RulesRoute: typeof RulesRoute
+  ScheduleRoute: typeof ScheduleRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +249,156 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/announcements': {
+      id: '/announcements'
+      path: '/announcements'
+      fullPath: '/announcements'
+      preLoaderRoute: typeof AnnouncementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/judging': {
+      id: '/judging'
+      path: '/judging'
+      fullPath: '/judging'
+      preLoaderRoute: typeof JudgingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rules': {
+      id: '/rules'
+      path: '/rules'
+      fullPath: '/rules'
+      preLoaderRoute: typeof RulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/account': {
+      id: '/admin/account'
+      path: '/account'
+      fullPath: '/admin/account'
+      preLoaderRoute: typeof AdminAccountRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/announcements': {
+      id: '/admin/announcements'
+      path: '/announcements'
+      fullPath: '/admin/announcements'
+      preLoaderRoute: typeof AdminAnnouncementsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/awards': {
+      id: '/admin/awards'
+      path: '/awards'
+      fullPath: '/admin/awards'
+      preLoaderRoute: typeof AdminAwardsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/export': {
+      id: '/admin/export'
+      path: '/export'
+      fullPath: '/admin/export'
+      preLoaderRoute: typeof AdminExportRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/judging': {
+      id: '/admin/judging'
+      path: '/judging'
+      fullPath: '/admin/judging'
+      preLoaderRoute: typeof AdminJudgingRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/registrations': {
+      id: '/admin/registrations'
+      path: '/registrations'
+      fullPath: '/admin/registrations'
+      preLoaderRoute: typeof AdminRegistrationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/schedule': {
+      id: '/admin/schedule'
+      path: '/schedule'
+      fullPath: '/admin/schedule'
+      preLoaderRoute: typeof AdminScheduleRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin_/login': {
+      id: '/admin_/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAccountRoute: typeof AdminAccountRoute
+  AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
+  AdminAwardsRoute: typeof AdminAwardsRoute
+  AdminExportRoute: typeof AdminExportRoute
+  AdminJudgingRoute: typeof AdminJudgingRoute
+  AdminRegistrationsRoute: typeof AdminRegistrationsRoute
+  AdminScheduleRoute: typeof AdminScheduleRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAccountRoute: AdminAccountRoute,
+  AdminAnnouncementsRoute: AdminAnnouncementsRoute,
+  AdminAwardsRoute: AdminAwardsRoute,
+  AdminExportRoute: AdminExportRoute,
+  AdminJudgingRoute: AdminJudgingRoute,
+  AdminRegistrationsRoute: AdminRegistrationsRoute,
+  AdminScheduleRoute: AdminScheduleRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AnnouncementsRoute: AnnouncementsRoute,
+  JudgingRoute: JudgingRoute,
+  RegisterRoute: RegisterRoute,
+  RulesRoute: RulesRoute,
+  ScheduleRoute: ScheduleRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
