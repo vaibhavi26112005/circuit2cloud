@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnnouncementsRouteImport } from './routes/announcements'
 import { Route as JudgingRouteImport } from './routes/judging'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as RulesRouteImport } from './routes/rules'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 
@@ -30,6 +31,11 @@ const JudgingRoute = JudgingRouteImport.update({
   path: '/judging',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RulesRoute = RulesRouteImport.update({
   id: '/rules',
   path: '/rules',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/announcements': typeof AnnouncementsRoute
   '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
   '/rules': typeof RulesRoute
   '/schedule': typeof ScheduleRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/announcements': typeof AnnouncementsRoute
   '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
   '/rules': typeof RulesRoute
   '/schedule': typeof ScheduleRoute
 }
@@ -60,21 +68,31 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/announcements': typeof AnnouncementsRoute
   '/judging': typeof JudgingRoute
+  '/register': typeof RegisterRoute
   '/rules': typeof RulesRoute
   '/schedule': typeof ScheduleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/announcements' | '/judging' | '/rules' | '/schedule'
+  fullPaths:
+    '/' | '/announcements' | '/judging' | '/register' | '/rules' | '/schedule'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/announcements' | '/judging' | '/rules' | '/schedule'
-  id: '__root__' | '/' | '/announcements' | '/judging' | '/rules' | '/schedule'
+  to: '/' | '/announcements' | '/judging' | '/register' | '/rules' | '/schedule'
+  id:
+    | '__root__'
+    | '/'
+    | '/announcements'
+    | '/judging'
+    | '/register'
+    | '/rules'
+    | '/schedule'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnnouncementsRoute: typeof AnnouncementsRoute
   JudgingRoute: typeof JudgingRoute
+  RegisterRoute: typeof RegisterRoute
   RulesRoute: typeof RulesRoute
   ScheduleRoute: typeof ScheduleRoute
 }
@@ -102,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JudgingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rules': {
       id: '/rules'
       path: '/rules'
@@ -123,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnnouncementsRoute: AnnouncementsRoute,
   JudgingRoute: JudgingRoute,
+  RegisterRoute: RegisterRoute,
   RulesRoute: RulesRoute,
   ScheduleRoute: ScheduleRoute,
 }
