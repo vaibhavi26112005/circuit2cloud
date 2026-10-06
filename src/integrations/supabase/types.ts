@@ -14,16 +14,342 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admins: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          name?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string | null
+        }
+        Relationships: []
+      }
+      announcements: {
+        Row: {
+          created_at: string
+          id: string
+          is_pinned: boolean
+          message: string
+          status: string
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_pinned?: boolean
+          message: string
+          status?: string
+          title: string
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_pinned?: boolean
+          message?: string
+          status?: string
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      event_settings: {
+        Row: {
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          description: string
+          event_date: string | null
+          event_name: string
+          id: number
+          organization: string | null
+          organizer_name: string | null
+          registration_deadline: string | null
+          registration_status: string
+          sponsors: string | null
+          tagline: string
+          updated_at: string
+          venue: string | null
+        }
+        Insert: {
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          description?: string
+          event_date?: string | null
+          event_name?: string
+          id?: number
+          organization?: string | null
+          organizer_name?: string | null
+          registration_deadline?: string | null
+          registration_status?: string
+          sponsors?: string | null
+          tagline?: string
+          updated_at?: string
+          venue?: string | null
+        }
+        Update: {
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          description?: string
+          event_date?: string | null
+          event_name?: string
+          id?: number
+          organization?: string | null
+          organizer_name?: string | null
+          registration_deadline?: string | null
+          registration_status?: string
+          sponsors?: string | null
+          tagline?: string
+          updated_at?: string
+          venue?: string | null
+        }
+        Relationships: []
+      }
+      judging_criteria: {
+        Row: {
+          description: string | null
+          id: string
+          points: number
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          description?: string | null
+          id?: string
+          points: number
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          description?: string | null
+          id?: string
+          points?: number
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          college: string
+          created_at: string
+          department: string
+          id: string
+          leader_department: string
+          leader_email: string
+          leader_name: string
+          leader_phone: string
+          leader_student_id: string
+          leader_year: string
+          member2_department: string | null
+          member2_email: string | null
+          member2_name: string | null
+          member2_phone: string | null
+          member2_student_id: string | null
+          member2_year: string | null
+          member3_department: string | null
+          member3_email: string | null
+          member3_name: string | null
+          member3_phone: string | null
+          member3_student_id: string | null
+          member3_year: string | null
+          member4_department: string | null
+          member4_email: string | null
+          member4_name: string | null
+          member4_phone: string | null
+          member4_student_id: string | null
+          member4_year: string | null
+          status: string
+          team_id: string
+          team_name: string
+          team_size: number
+          updated_at: string
+        }
+        Insert: {
+          college: string
+          created_at?: string
+          department: string
+          id?: string
+          leader_department: string
+          leader_email: string
+          leader_name: string
+          leader_phone: string
+          leader_student_id: string
+          leader_year: string
+          member2_department?: string | null
+          member2_email?: string | null
+          member2_name?: string | null
+          member2_phone?: string | null
+          member2_student_id?: string | null
+          member2_year?: string | null
+          member3_department?: string | null
+          member3_email?: string | null
+          member3_name?: string | null
+          member3_phone?: string | null
+          member3_student_id?: string | null
+          member3_year?: string | null
+          member4_department?: string | null
+          member4_email?: string | null
+          member4_name?: string | null
+          member4_phone?: string | null
+          member4_student_id?: string | null
+          member4_year?: string | null
+          status?: string
+          team_id: string
+          team_name: string
+          team_size: number
+          updated_at?: string
+        }
+        Update: {
+          college?: string
+          created_at?: string
+          department?: string
+          id?: string
+          leader_department?: string
+          leader_email?: string
+          leader_name?: string
+          leader_phone?: string
+          leader_student_id?: string
+          leader_year?: string
+          member2_department?: string | null
+          member2_email?: string | null
+          member2_name?: string | null
+          member2_phone?: string | null
+          member2_student_id?: string | null
+          member2_year?: string | null
+          member3_department?: string | null
+          member3_email?: string | null
+          member3_name?: string | null
+          member3_phone?: string | null
+          member3_student_id?: string | null
+          member3_year?: string | null
+          member4_department?: string | null
+          member4_email?: string | null
+          member4_name?: string | null
+          member4_phone?: string | null
+          member4_student_id?: string | null
+          member4_year?: string | null
+          status?: string
+          team_id?: string
+          team_name?: string
+          team_size?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      schedule_items: {
+        Row: {
+          created_at: string
+          day: number
+          description: string | null
+          id: string
+          sort_order: number
+          time: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          day: number
+          description?: string | null
+          id?: string
+          sort_order?: number
+          time: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          day?: number
+          description?: string | null
+          id?: string
+          sort_order?: number
+          time?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      special_awards: {
+        Row: {
+          description: string | null
+          id: string
+          prize: string | null
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          description?: string | null
+          id?: string
+          prize?: string | null
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          description?: string | null
+          id?: string
+          prize?: string | null
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_exists: { Args: never; Returns: boolean }
+      claim_first_admin: { Args: { _name: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      submit_registration: { Args: { p: Json }; Returns: Json }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +476,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const
